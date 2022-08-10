@@ -60,7 +60,7 @@ public class NotMinecraft {
                 //=====================================================================
                 //INIT COMPONENTS
                 //=====================================================================
-                frame = new JFrame("NotMinecraft");
+                frame = new JFrame("Not Minecraft");
                 backgroundPanel = new JPanel(){ 
                     public void paintComponent(Graphics gr){ 
                         Graphics2D g = (Graphics2D)gr;
@@ -72,12 +72,19 @@ public class NotMinecraft {
                 };
                 contentPanelLayoutPanel = new JPanel();
                 homeContentPanel = new FractionalLayoutPanel(0.5,0.45,0.2,0.17);
+                //worldPickerContentPanel = new FractionalLayoutPanel();
                 
                 //=====================================================================
                 //SIZING / LAYOUT
                 //=====================================================================
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-
+                JButton back = new JButton(){
+                    @Override
+                    public void paintComponent(Graphics g){
+                        TextureResourceLoader.getTexture("backbutton.png");
+                    }
+                }
+                
                 backgroundPanel.setPreferredSize(frame.getSize());
 
                 contentPanelLayoutPanel.setPreferredSize(frame.getSize());
@@ -118,32 +125,30 @@ public class NotMinecraft {
         tb1.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == this){
-                    contentPanelLayoutPanel.remove(homeContentPanel);
-                    // loadWorldPickerContentPanel();
-                }
+                contentPanelLayoutPanel.remove(homeContentPanel);
+                contentPanelLayoutPanel.add(worldPickerContentPanel);
             }
         });
         tb2.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == this){
-
-                }
+                System.out.println("never happening");
             }
         });
         tb3.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == this){
-
-                }
+                frame.dispose();
             }
         });
 
         homeContentPanel.add(tb1);
         homeContentPanel.add(tb2);
         homeContentPanel.add(tb3);
+    }
+    
+    public void initWorldPickerContentPanel(){
+        //TODO 
     }
     
     public boolean isFullscreen() { return this.fullscreen; }
