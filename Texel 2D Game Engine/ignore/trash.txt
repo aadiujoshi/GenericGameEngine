@@ -1,0 +1,27 @@
+
+
+    // public static Vector<Projectile> projectileCollision(Projectile p, Vector<Projectile> projectiles)
+    // {
+    //     for(Projectile op : projectiles)
+    //     {
+    //         if(p.getInitial().getVelocity().getVelocity() == 0){ //already hit an edge
+    //             p.collision(op, true);
+    //             continue;
+    //         }
+
+    //         int collisionType = p.collision(p, false);
+
+    //         if(collisionType == Projectile.NO_COLLISION) continue;
+
+    //         if(collisionType == Projectile.SIDE_COLLISION){
+    //             p.setTime(0);
+    //             p.setInitial(new InitialPoint(p.getX(), p.getY(), new texelgameengine.physics.Vector(0, 270)));
+    //             continue;
+    //         }
+
+    //         if(collisionType == Projectile.FLOOR_COLLISION){
+    //             p.setGrounded(true);
+    //         }
+    //     }
+    //     return projectiles;
+    // }
