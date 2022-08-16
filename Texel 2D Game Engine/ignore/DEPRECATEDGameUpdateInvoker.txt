@@ -1,0 +1,32 @@
+package texelgameengine.graphics;
+
+import java.util.Vector;
+
+import texelgameengine.game.GameObject;
+
+public class GameUpdateInvoker {
+    private Vector<GameUpdateListener> gameUpdateListeners;
+
+    public GameUpdateInvoker() {
+        gameUpdateListeners = new Vector<>();
+    }
+
+    public synchronized void registerGameUpdateListener(GameUpdateListener gl) {
+        gameUpdateListeners.add(gl);
+    }
+
+    public void dispatchGameUpdateListeners(GameUpdateEvent e) {
+        for(int i = 0; i < gameUpdateListeners.size(); i++) {
+            GameUpdateListener gul = gameUpdateListeners.get(i);
+            if(gul instanceof GameObject && ((GameObject)gameUpdateListeners.get(i)).isExpired()){
+                gameUpdateListeners.remove(i);
+                i--;
+                continue;
+            }
+            gul.gameUpdated(e);
+        }
+    }
+
+    public Vector<GameUpdateListener> getGameUpdateListeners() { return gameUpdateListeners; }
+    public synchronized void removeGameUpdateListener(GameUpdateListener gul) { gameUpdateListeners.remove(gul); }
+}
