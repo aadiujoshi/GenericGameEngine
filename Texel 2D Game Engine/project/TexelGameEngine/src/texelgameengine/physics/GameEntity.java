@@ -38,16 +38,27 @@ public class GameEntity extends GameObject{
     }
 
     
-    /**
-     * clip hitbox
-     */
-    public void snap(GameMap map){
+    public void clip(GameMap map){
         GameChunk local = map.getChunkAt(getX());
         int nv = local.getNextVacant(getY(), getHeight());
         // System.out.println(System.nanoTime());
         this.setInitial(new InitialPoint(getX(), nv+.5f, GameEntity.STANDING_VECTOR));
-        this.setY(nv+0.5f);
+        this.setY(nv+map.getBlockHeight()/2+getHeight()/2);
         this.setTime(0);
+    }
+
+    public void snap(GameMap map){
+        float nx;
+        float ny;
+
+        if((getX()-getWidth()/2) < Math.round(getX())-map.getBlockWidth()/2 && getX() > Math.round(getX())){
+            nx = ((int)getX())+getWidth()/2;
+        }
+        else if((getX()+getWidth()/2) > Math.round(getX())+map.getBlockWidth()/2 && getX() < Math.round(getX())){
+            nx = Math.round(getX())-getWidth()/2;
+        }
+
+        //if()
     }
 
 
