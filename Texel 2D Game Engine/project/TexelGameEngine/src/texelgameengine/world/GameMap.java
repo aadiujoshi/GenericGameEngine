@@ -19,9 +19,11 @@ public class GameMap extends PaintableObject implements GameUpdateListener
     private int leftmostChunkIndex;
     private int rightmostChunkIndex;
     private final int MIN_BLOCK_INDEX;
-
     //can be a negative
     private final int MAX_BLOCK_INDEX;
+
+    private float blockWidth = 1;
+    private float blockHeight = 1;
 
     private boolean loaded;
 
@@ -177,4 +179,6 @@ public class GameMap extends PaintableObject implements GameUpdateListener
     public int getMinBlockIndex() { return this.MIN_BLOCK_INDEX; }
     public int getNextFreeChunkLeft() { leftmostChunkIndex--; return this.leftmostChunkIndex; }
     public int getNextFreeChunkRight() { rightmostChunkIndex++; return this.rightmostChunkIndex; }
+    public float getBlockWidth() { return blockWidth; }
+    public float getBlockHeight() { return blockHeight; }
 }
